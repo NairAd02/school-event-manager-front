@@ -12,7 +12,7 @@ export default function SearchInput() {
       />
       <Search
         size={18}
-        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none"
       />
     </div>
   );

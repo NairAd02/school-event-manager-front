@@ -4,12 +4,13 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import SearchInput from "@/components/inputs/search-input";
 import CujaeLogo from "@/components/assets/cujae-logo";
+import { noticies } from "@/lib/data/noticies";
+import { ListItem } from "./ListItem/ListItem";
 
 export default function Navbar() {
   return (
@@ -18,7 +19,6 @@ export default function Navbar() {
         <div className="flex justify-between items-center gap-4 h-16">
           {/* Logo */}
           <Link href="/">
-          CUJAE
             <CujaeLogo />
           </Link>
 
@@ -28,21 +28,22 @@ export default function Navbar() {
             <NavigationMenu className="hidden md:flex">
               <NavigationMenuList className="hidden md:flex gap-10 items-center text-lg">
                 <NavigationMenuItem>
-                  <Link href="/docs" legacyBehavior passHref>
-                    <NavigationMenuLink>Sobre Nosotros</NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <Link href="/docs" legacyBehavior passHref>
-                    <NavigationMenuLink>Contáctanos</NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-lg">
-                    Cursos
+                    Noticias
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent></NavigationMenuContent>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[200px] gap-3 p-4 md:w-[330px] lg:grid-cols-2 lg:w-[480px] xl:w-[600px] ">
+                      {noticies.map((notice, index) => (
+                        <ListItem
+                          key={index}
+                          title={notice.name}
+                          href={notice.href}
+                        >
+                          {notice.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -52,14 +53,18 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="flex gap-2">
-            <Button asChild className="bg-primary text-lg" size={"lg"}>
+            <Button
+              asChild
+              className="bg-white hover:bg-secondary text-black text-lg"
+              size={"lg"}
+            >
               <Link href="/login">Login</Link>
             </Button>
 
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-primary"
+              className="md:hidden text-secondary"
             >
               <svg
                 className="h-6 w-6"

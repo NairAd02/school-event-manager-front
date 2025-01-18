@@ -1,11 +1,9 @@
 "use client";
-
 import React from "react";
 import { motion } from "framer-motion";
 import {
   CalendarIcon,
   MapPinIcon,
-  TicketIcon,
 } from "@heroicons/react/24/outline";
 import { Event } from "@/lib/types/event";
 import PreviewImage from "@/components/ui/preview-image/preview-image";
@@ -21,7 +19,7 @@ export default function EventCard({ event }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105"
+      className="bg-white rounded-xl h-[360px] overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105"
     >
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70"></div>
@@ -32,7 +30,8 @@ export default function EventCard({ event }: Props) {
           </h2>
         </div>
       </div>
-      <div className="p-6">
+      <div className="flex flex-col gap-5 p-6">
+        <div>
         <div className="flex items-center mb-4 text-gray-600">
           <CalendarIcon className="h-5 w-5 text-blue-500 mr-2" />
           <p className="text-sm">{event.fecha}</p>
@@ -40,6 +39,7 @@ export default function EventCard({ event }: Props) {
         <div className="flex items-center mb-4 text-gray-600">
           <MapPinIcon className="h-5 w-5 text-red-500 mr-2" />
           <p className="text-sm truncate">{event.lugar}</p>
+        </div>
         </div>
         <div className="flex items-center  justify-center">
           <Button className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">

@@ -27,3 +27,19 @@ export const getEvents = async (params: SearchParams): Promise<Event[]> => {
 
   return await response.json();
 };
+
+export const getEvent = async (eventId: string): Promise<Event> => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}${eventsPath}${eventId}/`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!response.ok) {
+    console.log(response);
+    throw new Error("Error fetching event");
+  }
+
+  return await response.json();
+};

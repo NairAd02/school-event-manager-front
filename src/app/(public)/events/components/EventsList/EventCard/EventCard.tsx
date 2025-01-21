@@ -8,6 +8,8 @@ import {
 import { Event } from "@/lib/types/event";
 import PreviewImage from "@/components/ui/preview-image/preview-image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { routes } from "@/lib/routes/routes";
 
 interface Props {
   event: Event;
@@ -43,7 +45,7 @@ export default function EventCard({ event }: Props) {
         </div>
         <div className="flex items-center  justify-center">
           <Button className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-            Ver detalles
+            <Link href={routes.event(event.id.toString()).path}>Ver detalles</Link>
           </Button>
         </div>
       </div>

@@ -1,9 +1,8 @@
 "use client";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DatePicker } from "@/components/ui/data-picker";
 import { Input } from "@/components/ui/input";
 
-export default function EventsFilers() {
+export default function PapersFilters() {
   return (
     <aside className="w-72 p-6 border-r min-h-screen">
       <h2 className="text-xl font-semibold mb-6">Filters</h2>
@@ -13,12 +12,8 @@ export default function EventsFilers() {
         <h3 className="text-sm text-muted-foreground mb-3">Products</h3>
         <div className="space-y-3">
           <label className="flex items-center space-x-2">
-            <span className="text-sm">Lugar</span>
-            <Input placeholder="introduzca lugar" />
-          </label>
-          <label className="flex items-center space-x-2">
-            <span className="text-sm">Extensions</span>
-            <DatePicker />
+            <span className="text-sm">Autor</span>
+            <Input placeholder="introduzca autor" />
           </label>
         </div>
       </div>

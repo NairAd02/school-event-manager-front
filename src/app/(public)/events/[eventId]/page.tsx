@@ -13,10 +13,10 @@ export default async function PapersPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ eventId: string }>;
   searchParams: SearchParams;
 }) {
-  const eventId = (await params).id; // event id
+  const eventId = (await params).eventId; // event id
   // get the event by id
   const event = await getEvent(eventId);
   const papers = await getEventPapers(+eventId, searchParams);

@@ -7,6 +7,7 @@ import type { Paper } from "@/lib/types/paper";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { routes } from "@/lib/routes/routes";
 
 interface Props {
   paper: Paper;
@@ -34,7 +35,14 @@ export default function PaperCard({ paper }: Props) {
               </p>
             </div>
             <Button className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              <Link href={""}>Abrir Ponencia</Link>
+              <Link
+                href={
+                  routes.paper(paper.evento.toString(), paper.id.toString())
+                    .path
+                }
+              >
+                Abrir Ponencia
+              </Link>
             </Button>
           </div>
         </CardContent>

@@ -4,11 +4,16 @@ import React from "react";
 import useDocumentPreview from "./hooks/useDocumentPreview";
 import type { PaperDetails } from "@/lib/types/paper";
 import { motion } from "framer-motion";
-import { Download, FileText, Music } from "lucide-react";
+import { Download, FileText } from "lucide-react";
 import AudioPlayer from "@/components/ui/audio-player";
 import { Button } from "@/components/ui/button";
 import useDownloadPack from "./hooks/useDownloadPack";
 import CircularProgress from "@/components/ui/circular-progress";
+import VideoPlayer from "@/components/ui/video-player";
+import usePaperVideos from "../hooks/usePaperVideos";
+import SectionsCarousel from "@/components/ui/sections-carousel/sections-carousel";
+import usePaperImages from "../hooks/usePaperImages";
+import PreviewImage from "@/components/ui/preview-image/preview-image";
 
 interface Props {
   paper: PaperDetails;
@@ -16,7 +21,14 @@ interface Props {
 
 export function PaperDetailsContent({ paper }: Props) {
   const { content, isDocumentLoading } = useDocumentPreview({ paper });
-  const { isLoading, downloadPack } = useDownloadPack({
+  const { videos, isLoading: isLoadingVideos } = usePaperVideos({
+    paperId: paper.id.toString(),
+  });
+  const { images, isLoading: isLoadingImages } = usePaperImages({
+    paperId: paper.id.toString(),
+  });
+  console.log(images)
+  const { isLoading: isLoadingDownloadPack, downloadPack } = useDownloadPack({
     packName: paper.nombre_ponencia,
     files: [paper.documento_original, paper.summary, paper.audio_file],
   });
@@ -71,16 +83,39 @@ export function PaperDetailsContent({ paper }: Props) {
         </motion.a>
       </div>
 
+      {videos.length > 0 && (
+        <SectionsCarousel
+          sections={videos.map((video, index) => ({
+            value: video.id.toString(),
+            content: <VideoPlayer key={index} videoUrl={video.video} />,
+          }))}
+        />
+      )}
+
       <AudioPlayer audioSrc={paper.audio_file} />
+
+      {images.length > 0 && (
+        <SectionsCarousel
+          sections={images.map((image, index) => ({
+            value: image.id.toString(),
+            content: (
+              <div className="w-full flex justify-center items-center" key={index}>
+                <PreviewImage preview={image.image} />
+              </div>
+            ),
+          }))}
+        />
+      )}
+
       <div>
         <Button
           onClick={downloadPack}
-          disabled={isLoading}
+          disabled={isLoadingDownloadPack}
           className="bg-primary mt-8 hover:bg-primary-dark text-white rounded-full transition duration-300 ease-in-out transform hover:scale-105"
         >
           <Download className="mr-2" size={18} />
           Descargar Pack de Ponencia
-          {isLoading && <CircularProgress className="h-5 w-5" />}
+          {isLoadingDownloadPack && <CircularProgress className="h-5 w-5" />}
         </Button>
       </div>
     </motion.div>

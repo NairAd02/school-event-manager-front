@@ -14,6 +14,7 @@ import usePaperVideos from "../hooks/usePaperVideos";
 import SectionsCarousel from "@/components/ui/sections-carousel/sections-carousel";
 import usePaperImages from "../hooks/usePaperImages";
 import PreviewImage from "@/components/ui/preview-image/preview-image";
+import { TypesFile } from "@/lib/types/file";
 
 interface Props {
   paper: PaperDetails;
@@ -27,10 +28,23 @@ export function PaperDetailsContent({ paper }: Props) {
   const { images, isLoading: isLoadingImages } = usePaperImages({
     paperId: paper.id.toString(),
   });
-  console.log(images)
+  console.log(images);
   const { isLoading: isLoadingDownloadPack, downloadPack } = useDownloadPack({
     packName: paper.nombre_ponencia,
-    files: [paper.documento_original, paper.summary, paper.audio_file],
+    files: [
+      {
+        name: paper.documento_original,
+        type: TypesFile.DOC,
+      },
+      {
+        name: paper.summary,
+        type: TypesFile.DOC,
+      },
+      {
+        name: paper.audio_file,
+        type: TypesFile.AUDIO,
+      },
+    ],
   });
   return (
     <motion.div
@@ -99,7 +113,10 @@ export function PaperDetailsContent({ paper }: Props) {
           sections={images.map((image, index) => ({
             value: image.id.toString(),
             content: (
-              <div className="w-full flex justify-center items-center" key={index}>
+              <div
+                className="w-full flex justify-center items-center"
+                key={index}
+              >
                 <PreviewImage preview={image.image} />
               </div>
             ),

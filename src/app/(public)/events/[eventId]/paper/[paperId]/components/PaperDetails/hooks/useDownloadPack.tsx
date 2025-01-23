@@ -1,10 +1,11 @@
 "use client";
 import { downloadZip } from "@/lib/services/files";
+import { FileInterface } from "@/lib/types/file";
 import { useCallback, useState } from "react";
 
 interface Props {
   packName: string;
-  files: string[];
+  files: FileInterface[];
 }
 
 export default function useDownloadPack({ packName, files }: Props) {

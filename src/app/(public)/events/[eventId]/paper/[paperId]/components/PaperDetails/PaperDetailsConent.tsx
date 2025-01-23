@@ -15,6 +15,7 @@ import SectionsCarousel from "@/components/ui/sections-carousel/sections-carouse
 import usePaperImages from "../hooks/usePaperImages";
 import PreviewImage from "@/components/ui/preview-image/preview-image";
 import { TypesFile } from "@/lib/types/file";
+import GearCujae from "@/components/assets/gear-cujae";
 
 interface Props {
   paper: PaperDetails;
@@ -106,7 +107,15 @@ export function PaperDetailsContent({ paper }: Props) {
         />
       )}
 
-      <AudioPlayer audioSrc={paper.audio_file} />
+      <div className="flex justify-between gap-6 items-center">
+        <div className="w-full">
+        <AudioPlayer audioSrc={paper.audio_file} />
+        </div>
+        
+        <div className="h-[180px] w-[180px]">
+        <GearCujae />
+        </div>
+      </div>
 
       {images.length > 0 && (
         <SectionsCarousel

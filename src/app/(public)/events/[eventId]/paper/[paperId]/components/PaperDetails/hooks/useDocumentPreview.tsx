@@ -14,7 +14,7 @@ export default function useDocumentPreview({ paper }: Props) {
   const loadDocument = useCallback(async () => {
     setIsDocumentLoading(true);
     try {
-      const file = await fetchFile(paper.documento_original);
+      const file = await fetchFile(paper.summary);
       const result = await mammoth.extractRawText({ arrayBuffer: file });
       setContent(result.value);
     } catch (error) {

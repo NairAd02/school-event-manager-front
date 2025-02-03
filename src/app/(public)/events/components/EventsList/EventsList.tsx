@@ -1,22 +1,87 @@
 import React from "react";
 import EventCard from "./EventCard/EventCard";
 import { Event } from "@/lib/types/event";
-import EventsFilers from "../EventsFilters/EventsFilters";
-import EmptyState from "@/app/components/EmptyState/EmptyState";
+import { EventMatrix, MonthArray } from "@/lib/types/eventMatrix";
+import { parse, isThisMonth } from "date-fns";
 
 interface Props {
   events: Event[];
 }
 
-export default function EventsList({ events }: Props) {
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+function noEventsFoundedMessage(): React.ReactNode {
+  return <p className="text-gray-400 italic">No events</p>;
+}
+
+function createMonthCards(months: Array<Event>) {
+  const monthCards = months.map((monthEvent) => (
+    <EventCard key={monthEvent.id} event={monthEvent}></EventCard>
+  ));
   return (
-    <div className="flex gap-14">
-      <EventsFilers />
-      { events.length > 0 ? <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-11 w-full p-6">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
-      </div> : <EmptyState title="No existen eventos disponibles de momento" description="Espere con ansias a nuevos eventos" />}
+    <div className="flex flex-wrap gap-5">
+      {monthCards.length > 0 ? monthCards : noEventsFoundedMessage()}
     </div>
   );
+}
+
+function useMonthDetails(month: string, currentDate: Date, monthMatrix: MonthArray) {
+  const isCurrentMonth: boolean = isThisMonth(
+    parse(`${currentDate.getFullYear()}-${month}-01`, "yyyy-MMMM-dd", new Date())
+  );
+  const monthKey: string = month.toLowerCase();
+  const monthList: Array<Event> = monthMatrix[monthKey as keyof MonthArray];
+
+  return { isCurrentMonth, monthList };
+}
+
+function splitMonths(eventMatrix: EventMatrix) {
+  const currentDate = new Date();
+  const monthMatrix = eventMatrix.monthMatrix;
+
+  return MONTHS.map((month) => {
+    const { monthList } = useMonthDetails(month, currentDate, monthMatrix);
+    const monthName = (
+      <div
+        id={month}
+        className="text-center font-semibold border-r px-2 py-[150px] mb-4 m-5 flex items-center justify-center"
+      >
+        {month}
+      </div>
+    );
+    const monthCardList = (
+      <div className="flex-grow">
+        {createMonthCards(monthList)}
+      </div>
+    );
+    return (
+      <div
+        key={month}
+        className="flex items-center border-b pb-4"
+      >
+        {monthName}
+        {monthCardList}
+      </div>
+    );
+  });
+}
+
+export default function EventsList({ events }: Props) {
+  const eventMatrix = new EventMatrix(events);
+
+  const monthSplitted = splitMonths(eventMatrix);
+  return <div className="space-y-4">{monthSplitted}</div>;
 }

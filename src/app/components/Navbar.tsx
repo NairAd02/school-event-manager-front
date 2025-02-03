@@ -11,10 +11,11 @@ import SearchInput from "@/components/inputs/search-input";
 import CujaeLogo from "@/components/assets/cujae-logo";
 import { noticies } from "@/lib/data/noticies";
 import { ListItem } from "./ListItem/ListItem";
+import UserIcon from "@heroicons/react/24/outline/UserIcon";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full bg-primary border-b z-50">
+    <nav className="fixed top-0 w-full bg-primary gradient-bg border-b z-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center gap-4 h-16">
           {/* Logo */}
@@ -55,28 +56,13 @@ export default function Navbar() {
           <div className="flex gap-2">
             <Button
               asChild
-              className="bg-white hover:bg-secondary text-black text-lg"
+              className="bg-white hover:bg-secondary text-black text-lg flex items-center"
               size={"lg"}
             >
-              <Link href="/login">Login</Link>
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-secondary"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
+              <Link href="/login" className="flex items-center">
+                <UserIcon className="h-5 w-5 text-black mr-2" /> {/* Ícono de usuario */}
+                Login
+              </Link>
             </Button>
           </div>
         </div>

@@ -112,6 +112,7 @@ export default function HomeContainer() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
               {homeSections.map((section) => (
                 <PackageCard
+                  key={section.id}
                   title={section.title}
                   image={section.image}
                   icon={section.icon}

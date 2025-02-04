@@ -18,10 +18,10 @@ export default function EventCard({ event }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-xl w-[clamp(280px, 40%, 300px)] shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105 flex flex-col items-center p-4 gap-4"
+      className="bg-white rounded-xl w-[clamp(280px, 20%, 300px)] shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105 flex flex-col items-center p-4 gap-4"
     >
       <div className="relative flex-shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 rounded-full"></div>
+        <div className="absolute inset-0 rounded-full"></div>
         <div>
           <PreviewImage preview="/images/cujae-logo.jpg"/>
         </div>

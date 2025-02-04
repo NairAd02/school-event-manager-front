@@ -30,8 +30,7 @@ function useMonthDetails(month: string, currentDate: Date, monthMatrix: MonthArr
   const isCurrentMonth: boolean = isThisMonth(
     parse(`${currentDate.getFullYear()}-${month}-01`, "yyyy-MMMM-dd", new Date())
   );
-  const monthKey: string = month.toLowerCase();
-  const monthList: Array<Event> = monthMatrix[monthKey as keyof MonthArray];
+  const monthList: Array<Event> = monthMatrix[month as keyof MonthArray];
 
   return { isCurrentMonth, monthList };
 }

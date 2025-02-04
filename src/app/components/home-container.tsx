@@ -12,12 +12,14 @@ import {
 } from "lucide-react";
 import type React from "react";
 import PackageCard from "./PackageCard/PackageCard";
+import { Route, routes } from "@/lib/routes/routes";
 
 export interface HomeSection {
   id: string;
   title: string;
   image: string;
   icon: React.ReactNode;
+  href: string;
 }
 
 const homeSections: HomeSection[] = [
@@ -26,18 +28,21 @@ const homeSections: HomeSection[] = [
     title: "Mire Eventos de la Cujae",
     image: "/images/cujae-front.jpeg",
     icon: <School className="w-8 h-8" />,
+    href: routes.events.path,
   },
   {
     id: "2",
     title: "Mire Eventos del Citi",
     image: "/images/city.jpeg",
     icon: <Calendar className="w-8 h-8" />,
+    href: routes.events.path,
   },
   {
     id: "3",
     title: "Mire Eventos Especiales",
     image: "/images/altar.jpeg",
     icon: <Sparkles className="w-8 h-8" />,
+    href: routes.events.path,
   },
 ];
 
@@ -116,6 +121,7 @@ export default function HomeContainer() {
                   title={section.title}
                   image={section.image}
                   icon={section.icon}
+                  href={section.href}
                 />
               ))}
             </div>
@@ -123,6 +129,7 @@ export default function HomeContainer() {
               title={"Mire todos los Eventos !!!"}
               image={"images/cujae-monument.jpeg"}
               icon={<BookOpenText className="w-8 h-8" />}
+              href={routes.events.path}
             />
           </motion.div>
         </div>

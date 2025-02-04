@@ -44,7 +44,7 @@ function splitMonths(eventMatrix: EventMatrix) {
     const monthName = (
       <div
         id={month}
-        className="text-center font-semibold border-r px-2 py-[150px] mb-4 m-5 flex items-center justify-center"
+        className="text-center text-xl font-semibold border-r px-2 py-[150px] mb-4 m-5 flex items-center justify-center"
       >
         {month}
       </div>

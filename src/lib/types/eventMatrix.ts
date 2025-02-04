@@ -18,12 +18,12 @@ export class EventMatrix{
     private splitEvent(eventList: Event[]): MonthArray {
         //initialize dynamically
         const monthMatrix: MonthArray = MONTHS.reduce((acc, month) => {
-            acc[month.toLowerCase()] = [];
+            acc[month] = [];
             return acc;
           }, {} as MonthArray);
         eventList.forEach((event: Event) => {
             const date: Date = new Date(event.fecha);
-            const month: string = MONTHS[date.getMonth()].toLowerCase();
+            const month: string = MONTHS[date.getMonth()];
             monthMatrix[month].push(event);
         });
         return monthMatrix;

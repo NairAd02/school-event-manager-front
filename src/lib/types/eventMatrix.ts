@@ -1,19 +1,10 @@
 import  {Event}  from "./event";
+import { MONTHS } from "../utils";
 
-export interface MonthArray{
-    january: Array<Event>,
-    february: Array<Event>,
-    march: Array<Event>,
-    april: Array<Event>,
-    may: Array<Event>,
-    june: Array<Event>,
-    july: Array<Event>,
-    august: Array<Event>,
-    september: Array<Event>,
-    october: Array<Event>,
-    november: Array<Event>,
-    december: Array<Event>,
+export interface MonthArray {
+  [key: string]: Array<Event>;
 }
+
 
 export class EventMatrix{
     readonly monthMatrix: MonthArray;
@@ -26,26 +17,14 @@ export class EventMatrix{
 
     private splitEvent(eventList: Event[]): MonthArray {
         //initialize dynamically
-        const monthMatrix: MonthArray = {
-            january:[],
-            february:[],
-            march:[],
-            april: [],
-            may:[],
-            june:[],
-            july:[],
-            august:[],
-            september:[],
-            october:[],
-            november:[],
-            december:[]
-        }
-        console.log(monthMatrix)
-        const monthNames: Array<string> = Object.keys(monthMatrix);
-        eventList.forEach((event:Event)=>{
+        const monthMatrix: MonthArray = MONTHS.reduce((acc, month) => {
+            acc[month.toLowerCase()] = [];
+            return acc;
+          }, {} as MonthArray);
+        eventList.forEach((event: Event) => {
             const date: Date = new Date(event.fecha);
-            const month: number = date.getMonth();
-            monthMatrix[monthNames[month] as keyof MonthArray].push(event);
+            const month: string = MONTHS[date.getMonth()].toLowerCase();
+            monthMatrix[month].push(event);
         });
         return monthMatrix;
     }

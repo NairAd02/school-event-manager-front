@@ -3,25 +3,13 @@ import EventCard from "./EventCard/EventCard";
 import { Event } from "@/lib/types/event";
 import { EventMatrix, MonthArray } from "@/lib/types/eventMatrix";
 import { parse, isThisMonth } from "date-fns";
+import { MONTHS } from "@/lib/utils";
 
 interface Props {
   events: Event[];
 }
 
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+
 
 function noEventsFoundedMessage(): React.ReactNode {
   return <p className="text-gray-400 italic">No events</p>;

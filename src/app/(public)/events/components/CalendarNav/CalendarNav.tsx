@@ -1,14 +1,11 @@
 "use client";
 import { useState } from 'react';
+import { MONTHS } from '@/lib/utils';
 
 export default function Calendar() {
-  const [selected, setSelected] = useState('January');
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
+  const [selected, setSelected] = useState(MONTHS[0]);
 
-  const handleSelection = (month) => {
+  const handleSelection = (month: string) => {
     setSelected(month);
     const element = document.getElementById(month);
     if (element) {
@@ -21,7 +18,7 @@ export default function Calendar() {
   return (
     <div className="p-4 bg-card text-card-foreground rounded-md shadow-md">
       <div className="grid grid-cols-3 gap-4">
-        {months.map((month) => (
+        {MONTHS.map((month) => (
           <button
             key={month}
             onClick={() => handleSelection(month)}

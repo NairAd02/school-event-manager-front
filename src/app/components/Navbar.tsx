@@ -15,7 +15,7 @@ import UserIcon from "@heroicons/react/24/outline/UserIcon";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full bg-primary gradient-bg border-b z-50">
+    <nav className="fixed top-0 w-full bg-primary gradient-bg shadow-lg z-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-1 mt-1 gap-4 h-16">
           {/* Logo */}

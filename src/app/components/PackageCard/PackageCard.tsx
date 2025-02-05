@@ -35,7 +35,7 @@ export default function PackageCard({
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-600/70 to-emerald-900/90 z-10 transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-600/70 to-emerald-900/90 z-10 transition-opacity duration-500 ease-in-out group-hover:opacity-0" />
         <div className="relative z-20 flex flex-col items-center justify-center h-64 p-6 text-white">
           <motion.div
             whileHover={{ rotate: 360 }}

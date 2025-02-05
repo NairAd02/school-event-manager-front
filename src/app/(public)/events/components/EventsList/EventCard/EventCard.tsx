@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { Event } from "@/lib/types/event";
 import PreviewImage from "@/components/ui/preview-image/preview-image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { routes } from "@/lib/routes/routes";
+import NavigationButton from "@/components/generals/navigation-button";
 
 interface Props {
   event: Event;
@@ -23,7 +22,7 @@ export default function EventCard({ event }: Props) {
       <div className="relative flex-shrink-0">
         <div className="absolute inset-0 rounded-full"></div>
         <div>
-          <PreviewImage preview="/images/cujae-logo.jpg"/>
+          <PreviewImage preview="/images/cujae-logo.jpg" />
         </div>
       </div>
       <div className="flex flex-cols h-full">
@@ -40,9 +39,7 @@ export default function EventCard({ event }: Props) {
             <p className="text-base truncate">{event.lugar}</p>
           </div>
           <div>
-            <Button className="m-0 mt-4 w-full bg-primary hover:bg-primary-dark gradient-btn text-white font-bold transition duration-300 ease-in-out transform hover:text-lg rounded-t-none">
-              <Link href={routes.event(event.id.toString()).path}>Ver detalles</Link>
-            </Button>
+            <NavigationButton href={routes.event(event.id.toString()).path} />
           </div>
         </div>
       </div>

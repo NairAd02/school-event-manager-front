@@ -5,9 +5,8 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Paper } from "@/lib/types/paper";
 import { UserIcon } from "@heroicons/react/24/outline";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { routes } from "@/lib/routes/routes";
+import NavigationButton from "@/components/generals/navigation-button";
 
 interface Props {
   paper: Paper;
@@ -34,16 +33,11 @@ export default function PaperCard({ paper }: Props) {
                 <strong>Autor:</strong> {paper.autor}
               </p>
             </div>
-            <Button className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              <Link
-                href={
-                  routes.paper(paper.evento.toString(), paper.id.toString())
-                    .path
-                }
-              >
-                Abrir Ponencia
-              </Link>
-            </Button>
+            <NavigationButton
+              href={
+                routes.paper(paper.evento.toString(), paper.id.toString()).path
+              }
+            />
           </div>
         </CardContent>
       </Card>

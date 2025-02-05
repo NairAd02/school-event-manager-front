@@ -39,7 +39,9 @@ export default function EventCard({ event }: Props) {
             <p className="text-base truncate">{event.lugar}</p>
           </div>
           <div>
-            <NavigationButton href={routes.event(event.id.toString()).path} />
+            <NavigationButton href={routes.event(event.id.toString()).path}>
+              Ver Detalles
+            </NavigationButton>
           </div>
         </div>
       </div>

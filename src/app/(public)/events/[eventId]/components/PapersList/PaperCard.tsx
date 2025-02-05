@@ -37,7 +37,9 @@ export default function PaperCard({ paper }: Props) {
               href={
                 routes.paper(paper.evento.toString(), paper.id.toString()).path
               }
-            />
+            >
+              Ver Detalles
+            </NavigationButton>
           </div>
         </CardContent>
       </Card>

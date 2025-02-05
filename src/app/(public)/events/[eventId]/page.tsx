@@ -4,10 +4,9 @@ import { PapersList } from "./components/PapersList/PapersList";
 import { getEvent } from "@/lib/services/events";
 import { getEventPapers } from "@/lib/services/papers";
 import type { SearchParams } from "@/lib/types/searchParams";
-import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import { routes } from "@/lib/routes/routes";
+import NavigationButton from "@/components/generals/navigation-button";
 
 export default async function PapersPage({
   params,
@@ -24,10 +23,12 @@ export default async function PapersPage({
   return (
     <div className="container mx-auto pt-28">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-        <Button variant="outline" className="mb-4 flex items-center">
-          <ArrowLeftIcon className="h-4 w-4 mr-2" />
-          <Link href={routes.events.path}>Volver a los eventos</Link>
-        </Button>
+        <NavigationButton href={routes.events.path} className="w-auto">
+          <div className="flex gap-2 items-center justify-center">
+            <ArrowLeftIcon className="h-4 w-4 mr-2" />
+            Volver a los eventos
+          </div>
+        </NavigationButton>
         <h1 className="text-3xl font-bold">Evento y Ponencias</h1>
       </div>
       <EventInfo event={event} />

@@ -16,6 +16,7 @@ import usePaperImages from "../hooks/usePaperImages";
 import PreviewImage from "@/components/ui/preview-image/preview-image";
 import { TypesFile } from "@/lib/types/file";
 import GearCujae from "@/components/assets/gear-cujae";
+import useAudio from "./hooks/useAudio";
 
 interface Props {
   paper: PaperDetails;
@@ -23,13 +24,16 @@ interface Props {
 
 export function PaperDetailsContent({ paper }: Props) {
   const { content, isDocumentLoading } = useDocumentPreview({ paper });
-  const { videos} = usePaperVideos({
+  const { videos } = usePaperVideos({
     paperId: paper.id.toString(),
   });
   const { images } = usePaperImages({
     paperId: paper.id.toString(),
   });
-  console.log(images);
+
+  const { audioSrc, isLoading: isLoadingAudio } = useAudio({
+    audioUrl: paper.audio_file,
+  });
   const { isLoading: isLoadingDownloadPack, downloadPack } = useDownloadPack({
     packName: paper.nombre_ponencia,
     files: [
@@ -72,7 +76,7 @@ export function PaperDetailsContent({ paper }: Props) {
           <p className="text-lg leading-relaxed">{content}</p>
         </motion.div>
       ) : (
-        <CircularProgress className="h-16 w-16" />
+        <CircularProgress className="h-16 w-16 border-primary" />
       )}
 
       <div className="flex flex-wrap gap-4 mb-6">
@@ -108,12 +112,16 @@ export function PaperDetailsContent({ paper }: Props) {
       )}
 
       <div className="flex justify-between gap-6 items-center">
-        <div className="w-full">
-        <AudioPlayer audioSrc={paper.audio_file} />
-        </div>
-        
+        {audioSrc && !isLoadingAudio ? (
+          <div className="w-full">
+            <AudioPlayer audioSrc={audioSrc} />
+          </div>
+        ) : (
+          <CircularProgress className="h-16 w-16 border-primary" />
+        )}
+
         <div className="h-[180px] w-[180px]">
-        <GearCujae />
+          <GearCujae />
         </div>
       </div>
 
@@ -141,7 +149,7 @@ export function PaperDetailsContent({ paper }: Props) {
         >
           <Download className="mr-2" size={18} />
           Descargar Pack de Ponencia
-          {isLoadingDownloadPack && <CircularProgress className="h-5 w-5" />}
+          {isLoadingDownloadPack && <CircularProgress className="h-5 w-5 border-primary" />}
         </Button>
       </div>
     </motion.div>

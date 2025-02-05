@@ -25,7 +25,7 @@ export default function Footer() {
             {/* Social Media and Logo */}
             <div className="flex flex-col-reverse items-center gap-5 md:items-end order-3 md:order-3">
               <SocialMedia />
-              <a href="/" className="flex justify-center items-center gap-2">
+              <a href="/google.com" className="flex justify-center items-center gap-2">
                 <CujaeLogo />
                 <span className="text-xl font-bold text-white">Cujae</span>
               </a>
@@ -35,7 +35,7 @@ export default function Footer() {
       ) : (
         // Mobile Version
         <div className="flex flex-col items-center text-center gap-2">
-          <a href="/" className="flex justify-center items-center gap-2">
+          <a href="/google.com" className="flex justify-center items-center gap-2">
             <CujaeLogo />
             <span className="text-lg font-bold text-white">Cujae</span>
           </a>

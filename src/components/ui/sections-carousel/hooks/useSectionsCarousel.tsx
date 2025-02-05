@@ -24,6 +24,6 @@ export default function useSectionsCarousel({ sections }: Props) {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [sections]);
   return { activeTab, setActiveTab };
 }

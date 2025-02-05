@@ -5,14 +5,14 @@ import { getEvents } from "@/lib/services/events";
 import { SearchParams } from "@/lib/types/searchParams";
 
 type PageProps = {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 };
 
 export default async function EventsPage({ searchParams }: PageProps) {
-  const events = await getEvents(searchParams);
+  const events = await getEvents(await searchParams);
 
   return (
-    <div className='flex relative'>
+    <div className="flex relative">
       <div className="p-6 pt-28 flex-grow">
         <EventsList events={events} />
       </div>

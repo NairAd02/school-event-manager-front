@@ -13,12 +13,12 @@ export default async function PapersPage({
   searchParams,
 }: {
   params: Promise<{ eventId: string }>;
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
   const eventId = (await params).eventId; // event id
   // get the event by id
   const event = await getEvent(eventId);
-  const papers = await getEventPapers(+eventId, searchParams);
+  const papers = await getEventPapers(+eventId, await searchParams);
 
   return (
     <div className="container mx-auto pt-28">

@@ -32,6 +32,6 @@ export default function useStandardCarousel({ cantElements }: Props) {
         setIsCentered(cantElements < 2);
         break;
     }
-  }, [breakpoint]);
+  }, [breakpoint, cantElements]);
   return { isCentered };
 }

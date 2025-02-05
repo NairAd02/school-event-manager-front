@@ -17,7 +17,7 @@ interface Props<T> {
   className?: string;
   loop?: boolean;
 }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function StandartCarousel<T extends { id: any }>({
   items,
   dimsension,

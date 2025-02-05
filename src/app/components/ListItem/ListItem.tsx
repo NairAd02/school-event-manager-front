@@ -1,7 +1,6 @@
-import { NavigationMenuLink } from "@/components/ui/navigation-menu"
-import { cn } from "@/lib/utils"
-import React from "react"
-
+import { NavigationMenuLink } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import React from "react";
 
 export const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -25,5 +24,7 @@ export const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
+  );
+});
+
+ListItem.displayName = "ListItem";

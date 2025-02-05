@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import type React from "react";
 import PackageCard from "./PackageCard/PackageCard";
-import { Route, routes } from "@/lib/routes/routes";
+import { routes } from "@/lib/routes/routes";
 
 export interface HomeSection {
   id: string;

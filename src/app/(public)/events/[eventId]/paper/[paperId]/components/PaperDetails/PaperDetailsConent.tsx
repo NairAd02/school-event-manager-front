@@ -23,10 +23,10 @@ interface Props {
 
 export function PaperDetailsContent({ paper }: Props) {
   const { content, isDocumentLoading } = useDocumentPreview({ paper });
-  const { videos, isLoading: isLoadingVideos } = usePaperVideos({
+  const { videos} = usePaperVideos({
     paperId: paper.id.toString(),
   });
-  const { images, isLoading: isLoadingImages } = usePaperImages({
+  const { images } = usePaperImages({
     paperId: paper.id.toString(),
   });
   console.log(images);

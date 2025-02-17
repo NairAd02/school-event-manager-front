@@ -2,9 +2,10 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 
+
 export default function PapersFilters() {
   return (
-    <aside className="w-72 p-6 border-r min-h-screen">
+    <aside className="w-full p-6 border-r min-h-screen">
       <h2 className="text-xl font-semibold mb-6">Filters</h2>
 
       {/* Products Section */}

@@ -1,8 +1,6 @@
 import { CalendarIcon, MapPinIcon } from "lucide-react";
 import type { Event } from "@/lib/types/event";
 import type { Paper } from "@/lib/types/paper";
-import PapersFilters from "../PapersFilters/PapersFilters";
-import PaperCard from "../PapersList/PaperCard";
 import { PapersList } from "../PapersList/PapersList";
 
 interface EventDetailsProps {
